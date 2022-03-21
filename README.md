@@ -3,3 +3,19 @@
 Essentials is the only bot you will need to get your server up and running. Essentials all the neccasary features of a successful server, and a few more quality of life improvments in our Essentials+ suite.
 
 ### Can I invite the bot?
+
+Of course! You can use [this link](BRUH.COM) to invite our bot to your server. Or you can find a server with the bot already in it and use the command `+invite`.
+
+### What is this bot?
+
+This bot is designed to be the easiest way to get a server up and running in an instant. With fully fledged auto-moderation system, moderation commands including kick, ban, timeout and even a strike system.
+
+Essentials also includes some fun commands, to engage your server with ease. This includes an extremely simple giveaway system, commands that start games and other commands like `+8ball` and `+howgay`.
+
+### Self-hosting
+
+Self hosting isn't recommended as you will not recieve any support for the bot if you manage to break it. You can use our code in accordance to our [license](https://github.com/essentials-bot/essentials/blob/main/LICENSE). Our base source code will always remain open-source and free.
+
+### Got any questions?
+
+If you have any further questions about this bot, its functionality or how to use this bot, you can find our support server [here](https://discord.gg/cQk2msf9pQ).
