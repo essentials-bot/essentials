@@ -2,8 +2,9 @@ const fs = require('node:fs');
 const { Client, Collection, Intents } = require('discord.js');
 dotenv = require("dotenv")
 dotenv.config()
+const { GiveawaysManager } = require('discord-giveaways');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MEMBERS] });
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -61,5 +62,5 @@ client.on('interactionCreate', async interaction => {
 
 const release = 0;
 
-if (release === 0) console.log("LOGGING INTO STABLE CLIENT"), Client.login(process.env.TOKEN);
-if (release === 1) console.log("LOGGING INTO BETA CLIENT"), Client.login(process.env.TOKEN2);
+if (release === 0) console.log("LOGGING INTO STABLE CLIENT"), client.login(process.env.TOKEN);
+if (release === 1) console.log("LOGGING INTO BETA CLIENT"), client.login(process.env.TOKEN2);
