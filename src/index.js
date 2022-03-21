@@ -1,6 +1,7 @@
 const { Client, Intents, Collection, MessageEmbed, Guild, Message} = require("discord.js")
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MEMBERS] });
-const { token, token2 } = require('./config.json');
+const dotenv = require(`dotenv`)
+dotenv.config()
 const fs = require('fs')
 const { GiveawaysManager } = require('discord-giveaways');
 client.on("ready", () => { //when bot starts
@@ -8,6 +9,10 @@ console.log("I'm online!") //console info
 const botver = "1.0.0"; //bot version string
 const serverNumb = client.guilds.cache.size //records how many servers the bot is in
 const botProfile = client.user.tag //records the username and discriminator the bot is logged in as
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+
+
 
 client.on('debug', console.log) //log debug messages
       .on('warn', console.log) //log warning messages
@@ -110,10 +115,10 @@ v Bot startup
 const releaseVer = 0 //Stable-0 Beta-1
 
 if (releaseVer == 1) {
-	client.login(token2); //beta
+	client.login(process.env.TOKEN2); //beta
 	console.log('Logging in under Beta token...') //log beta token login
 }
 else if (releaseVer == 0) {
-	client.login(token); //stable
+	client.login(process.env.TOKEN); //stable
 	console.log('Logging in under Stable token...') //log stable token login
 }
