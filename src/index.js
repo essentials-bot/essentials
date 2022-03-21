@@ -1,3 +1,5 @@
+// Constants
+
 const fs = require('node:fs');
 const { Client, Collection, Intents } = require('discord.js');
 dotenv = require("dotenv")
