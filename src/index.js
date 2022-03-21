@@ -11,7 +11,7 @@ const botProfile = client.user.tag //records the username and discriminator the 
 
 client.on('debug', console.log) //log debug messages
       .on('warn', console.log) //log warning messages
-console.log('AurumBot (Version ' + botver + ')');	//console info
+console.log('(Version ' + botver + ')');	//console info
 console.log('Logged in as ' + client.user.tag)//console info
 client.aliases = new Collection() //command handler
 client.commands = new Collection() //command handler
