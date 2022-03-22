@@ -106,6 +106,8 @@ dist
 # packagelock
 package-lock.json
 
-# giveaways.json
-
+# giveaways.json (log of active/past giveaways)
 giveaways.json
+
+# info.json (/botstats command info)
+info.json
