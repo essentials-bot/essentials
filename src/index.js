@@ -1,24 +1,73 @@
 // Constants
-
 const fs = require('node:fs');
-const { Client, Collection, Intents } = require('discord.js');
-dotenv = require("dotenv")
+const {
+    Client,
+    Collection,
+    Intents
+} = require('discord.js');
+const dotenv = require("dotenv")
 dotenv.config()
-const { GiveawaysManager } = require('discord-giveaways');
+const {
+    GiveawaysManager
+} = require('discord-giveaways');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MEMBERS] });
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+
+
+const commands = [];
+
+// Place your client and guild ids here
+const clientId = '955262542471643196';
+const guildId = '906468430494973954';
+
+const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+
+
+const client = new Client({
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MEMBERS]
+});
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.data.name, command);
+    const command = require(`./commands/${file}`);
+    client.commands.set(command.data.name, command);
 }
 
+// Constants Done
+
 client.once('ready', () => {
-	console.log('Ready!');
+    console.log('Ready!');
+    client.user.setActivity("https://discord.gg/cQk2msf9pQ", {
+        type: "PLAYING",
+    })
 });
+
+/*
+Refresh Start
+*/
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	commands.push(command.data.toJSON());
+}
+
+(async () => {
+	try {
+		console.log('Started refreshing application (/) commands.');
+
+		await rest.put(
+			Routes.applicationGuildCommands(clientId, guildId),
+			{ body: commands },
+		);
+
+		console.log('Successfully reloaded application (/) commands.');
+	} catch (error) {
+		console.error(error);
+	}
+})();
 
 
 /* 
@@ -47,18 +96,21 @@ client.giveawaysManager.on("giveawayEnded", (giveaway, winners) => {
 });
 
 client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
+    if (!interaction.isCommand()) return;
 
-	const command = client.commands.get(interaction.commandName);
+    const command = client.commands.get(interaction.commandName);
 
-	if (!command) return;
+    if (!command) return;
 
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-	}
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        await interaction.reply({
+            content: 'There was an error while executing this command!',
+            ephemeral: true
+        });
+    }
 });
 
 
