@@ -4,13 +4,13 @@ Essentials is the only bot you will need to get your server up and running. Esse
 
 ### Can I invite the bot?
 
-Of course! You can use [this link](BRUH.COM) to invite our bot to your server. Or you can find a server with the bot already in it and use the command `+invite`.
+Of course! You can use [this link](BRUH.COM) to invite our bot to your server. Or you can find a server with the bot already in it and use the command `/invite`.
 
 ### What is this bot?
 
 This bot is designed to be the easiest way to get a server up and running in an instant. With a fully-fledged auto-moderation system, moderation commands including kick, ban, timeout and even a strike system.
 
-Essentials also includes some fun commands, to engage your server with ease. This includes an extremely simple giveaway system, commands that start games and other commands like `+8ball` and `+howgay`.
+Essentials also includes some fun commands, to engage your server with ease. This includes an extremely simple giveaway system, commands that start games and other commands like `/8ball` and `/howgay`.
 
 ### Self-hosting
 
