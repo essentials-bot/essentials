@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('bruh')
+        .setName('bstatus')
         .setDescription('Changes the status of the bot (DEVELOPER ONLY)')
         .addStringOption(option =>
             option.setName('status')
