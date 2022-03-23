@@ -143,6 +143,10 @@ client.giveawaysManager.on("giveawayEnded", (giveaway, winners) => {
     console.log(`Giveaway #${giveaway.messageID} ended! Winners: ${winners.map((member) => member.user.username).join(', ')}`);
 });
 
+/*
+Giveaways End
+*/
+
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
 
