@@ -1,4 +1,3 @@
-// Constants
 const fs = require('node:fs');
 const {
     Client,
