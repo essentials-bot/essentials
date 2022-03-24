@@ -1,3 +1,5 @@
+![Essentials](/essentials/src/images/ESSENTIALS.png)
+
 # Hello!
 
 Essentials is the only bot you will need to get your server up and running. Essentials includes all the necessary features of a successful server and a few more quality-of-life improvements in our Essentials+ suite.
