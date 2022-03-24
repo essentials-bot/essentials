@@ -23,9 +23,9 @@ module.exports = {
   
     if (!Member.permissions.has('KICK_MEMBERS')) return interaction.editReply({ content:"You cannot use this command, you need the permission `KICK_MEMBERS`", ephemeral: true });
 
-    // if (User.roles.highest.position >= interaction.member.roles.highest.position) return interaction.editReply({ content:"You cannot use this command, the user has a higher role than you", ephemeral: true });
+    if (User.roles.highest.position >= interaction.member.roles.highest.position) return interaction.editReply({ content:"You cannot use this command, the user has a higher role than you", ephemeral: true });
 
-    // if (!User.kickable) return interaction.editReply({ content:"You cannot use this command, the user is not kickable by me. Try checking my role hierarchy or if I have permissions to do so.", ephemeral: true});
+    if (!User.kickable) return interaction.editReply({ content:"You cannot use this command, the user is not kickable by me. Try checking my role hierarchy or if I have permissions to do so.", ephemeral: true});
 
     if (!interaction.options.getString('reason')) Reason = `${interaction.member.user.username}: N/A`
 
