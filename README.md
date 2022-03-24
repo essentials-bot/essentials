@@ -1,4 +1,4 @@
-![Essentials](/essentials/src/images/ESSENTIALS.png)
+![Essentials](/src/images/ESSENTIALS.png)
 
 # Hello!
 
