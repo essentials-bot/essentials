@@ -10,10 +10,11 @@ const {
     GiveawaysManager
 } = require('discord-giveaways');
 
+const mongo = require('./mongo')
+
 const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MEMBERS]
 });
-
 
 const {
     REST
@@ -21,7 +22,6 @@ const {
 const {
     Routes
 } = require('discord-api-types/v9');
-
 
 const commands = [];
 
@@ -32,9 +32,6 @@ const rest = new REST({
     version: '9'
 }).setToken(process.env.TOKEN);
 
-
-
-
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -43,12 +40,15 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 
+client.once('ready', async () => {
+    await mongo().then(mongoose => {
+        try {
+            console.log("Connected to mongo")
+        } finally {
+            mongoose.connection.close()
+        }
+    })
 
-// Constants Done
-
-
-
-client.once('ready', () => {
     console.log('Ready!');
     client.user.setActivity("https://discord.gg/cQk2msf9pQ", {
         type: "PLAYING",
@@ -116,7 +116,6 @@ for (const file of commandFiles) {
     }
 })();
 
-
 /* 
 Giveaway Start
 */
@@ -159,5 +158,5 @@ client.on('interactionCreate', async interaction => {
 
 const release = 0;
 
-if (release === 0) console.log("LOGGING INTO STABLE CLIENT"), client.login(process.env.TOKEN);
-if (release === 1) console.log("LOGGING INTO BETA CLIENT"), client.login(process.env.TOKEN2);
+if (release === 0) console.log(`LOGGING INTO STABLE CLIENT AS ${client.user.tag}`), client.login(process.env.TOKEN);
+if (release === 1) console.log(`LOGGING INTO BETA CLIENT AS ${client.user.tag}`), client.login(process.env.TOKEN2);
