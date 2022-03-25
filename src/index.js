@@ -158,5 +158,5 @@ client.on('interactionCreate', async interaction => {
 
 const release = 0;
 
-if (release === 0) console.log(`LOGGING INTO STABLE CLIENT AS ${client.user.tag}`), client.login(process.env.TOKEN);
-if (release === 1) console.log(`LOGGING INTO BETA CLIENT AS ${client.user.tag}`), client.login(process.env.TOKEN2);
+if (release === 0) console.log(`LOGGING INTO STABLE CLIENT`), client.login(process.env.TOKEN);
+if (release === 1) console.log(`LOGGING INTO BETA CLIENT`), client.login(process.env.TOKEN2);
