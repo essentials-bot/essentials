@@ -23,8 +23,6 @@ module.exports = {
         if (parseInt(size) > 12) return interaction.reply(`This size you specified is too large, please select a number between 5 and 12`)
         if (parseInt(size) < 5) return interaction.reply(`The size you specified is too small, please select a number between 5 and 12.`)
 
-        console.log(size)
-
         const minesweeper = new Minesweeper({
             rows: parseInt(size),
             columns: parseInt(size),
