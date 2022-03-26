@@ -1,4 +1,4 @@
-![Essentials](/essentials/images/ESSENTIALS.png)
+![Essentials](/images/ESSENTIALS.png)
 
 # Hello!
 
@@ -14,7 +14,7 @@ This bot is designed to be the easiest way to get a server up and running in an 
 
 Essentials also includes some fun commands, to engage your server with ease. This includes an extremely simple giveaway system, commands that start games and other commands like `/8ball` and `/howgay`.
 
-![Essentials+](/essentials/images/ESSENTIALS%2B.png)
+![Essentials+](/images/ESSENTIALS%2B.png)
 
 ### Essentials+
 
