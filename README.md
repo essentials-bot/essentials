@@ -4,8 +4,6 @@
 
 Essentials is the only bot you will need to get your server up and running. Essentials includes all the necessary features of a successful server and a few more quality-of-life improvements in our Essentials+ suite.
 
-![Essentials+](/images/ESSENTIALS%2B.png)
-
 # Essentials+
 
 Essentials+ is our premium bot, offering many things that may not be essential, but will be helpful and entertaining for your community.
