@@ -1,3 +1,5 @@
+console.log('====================================================================================================')
+
 const fs = require('node:fs');
 const {
     Client,
@@ -11,6 +13,8 @@ const {
 } = require('discord-giveaways');
 
 const mongo = require('./mongo')
+
+const badServerNames = ['advertising', 'ads', 'crypto', 'bitcoin', 'dogecoin', 'litecoin', 'eth', 'ether', 'ethereum', 'loli', 'cp', 'porn', 'child porn', 'sex', 'nsfw', 'gore', '18+', ]
 
 const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MEMBERS]
@@ -40,7 +44,17 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 
-client.once('ready', async () => {
+client.on('guildCreate', async (guild) => {
+if (badServerNames.some(badName => guild.name.includes(badName))) {
+    guild.leave()
+        .then(g => console.log(`Left the guild ${g} as it included a bad name!`))
+        .catch(console.error);
+} else {
+    console.log(`I joined guild: ${guild}`)
+}
+})
+
+    client.once('ready', async () => {
     await mongo().then(mongoose => {
         try {
             console.log("Connected to mongo")
@@ -49,7 +63,6 @@ client.once('ready', async () => {
         }
     })
 
-    console.log('Ready!');
     client.user.setActivity("https://discord.gg/cQk2msf9pQ", {
         type: "PLAYING",
     })
@@ -86,6 +99,7 @@ client.once('ready', async () => {
             console.log('Error writing file', err)
         } else {
             console.log('Successfully wrote file')
+            console.log('====================================================================================================')
         }
     })
 
@@ -102,15 +116,15 @@ for (const file of commandFiles) {
 
 (async () => {
     try {
-        console.log('Started refreshing application (/) commands.');
+        console.log('Refreshing / commands');
 
         await rest.put(
             Routes.applicationGuildCommands(clientId, guildId), {
                 body: commands
             },
         );
-
-        console.log('Successfully reloaded application (/) commands.');
+        console.log('====================================================================================================')
+        console.log('All / commands reloaded');
     } catch (error) {
         console.error(error);
     }
@@ -157,6 +171,7 @@ client.on('interactionCreate', async interaction => {
 
 
 const release = 0;
+console.log('====================================================================================================')
 
 if (release === 0) console.log(`LOGGING INTO STABLE CLIENT`), client.login(process.env.TOKEN);
 if (release === 1) console.log(`LOGGING INTO BETA CLIENT`), client.login(process.env.TOKEN2);
