@@ -1,5 +1,9 @@
 console.log('====================================================================================================')
 
+/*
+ Packages
+*/
+
 const fs = require('node:fs');
 const {
     Client,
@@ -14,10 +18,11 @@ const {
 
 const mongo = require('./mongo')
 
-const badServerNames = ['advertising', 'ads', 'crypto', 'bitcoin', 'dogecoin', 'litecoin', 'eth', 'ether', 'ethereum', 'loli', 'cp', 'porn', 'child porn', 'sex', 'nsfw', 'gore', '18+', ]
+const badServerNames = ['advertising', 'ads', 'crypto', 'bitcoin', 'dogecoin', 'litecoin', 'eth', 'ether', 'ethereum', 'loli', 'cp', 'porn', 'child porn', 'sex', 'nsfw', 'gore', '18+', 'csgo',]
 
 const client = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MEMBERS]
+    intents: 30223,
+    partials: ['MESSAGE', 'CHANNEL']
 });
 
 const {
@@ -30,7 +35,7 @@ const {
 const commands = [];
 
 const clientId = '955262542471643196';
-const guildId = '906468430494973954';
+const guildId = '947431014169460746';
 
 const rest = new REST({
     version: '9'
@@ -44,17 +49,26 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 
+/*
+Listeners
+*/
+
 client.on('guildCreate', async (guild) => {
-if (badServerNames.some(badName => guild.name.includes(badName))) {
-    guild.leave()
-        .then(g => console.log(`Left the guild ${g} as it included a bad name!`))
-        .catch(console.error);
-} else {
-    console.log(`I joined guild: ${guild}`)
-}
+    if (badServerNames.some(badName => guild.name.includes(badName))) {
+        guild.leave()
+            .then(g => console.log(`Left the guild ${g} as it included a bad name!`))
+            .catch(console.error);
+    } else {
+        console.log(`I joined guild: ${guild}`)
+    }
 })
 
-    client.once('ready', async () => {
+client.on('messageCreate', async (message) => {
+    if (message.channel.type !== 'DM') return
+    console.log(`${message.author.tag} said: ${message.content}`)
+})
+
+client.once('ready', async () => {
     await mongo().then(mongoose => {
         try {
             console.log("Connected to mongo")
@@ -106,7 +120,7 @@ if (badServerNames.some(badName => guild.name.includes(badName))) {
 });
 
 /*
-Refresh Start
+Refresh / Commands
 */
 
 for (const file of commandFiles) {
@@ -131,8 +145,9 @@ for (const file of commandFiles) {
 })();
 
 /* 
-Giveaway Start
+Giveaway Management
 */
+
 client.giveawaysManager = new GiveawaysManager(client, {
     storage: "./giveaways.json",
     updateCountdownEvery: 5000,
@@ -148,7 +163,7 @@ client.giveawaysManager.on("giveawayEnded", (giveaway, winners) => {
 });
 
 /*
-Giveaways End
+Commnad Handling
 */
 
 client.on('interactionCreate', async interaction => {
@@ -169,6 +184,9 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
+/*
+Logging in
+*/
 
 const release = 0;
 console.log('====================================================================================================')
