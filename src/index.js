@@ -18,7 +18,7 @@ const {
 
 const mongo = require('./mongo')
 
-const badServerNames = ['advertising', 'ads', 'crypto', 'bitcoin', 'dogecoin', 'litecoin', 'eth', 'ether', 'ethereum', 'loli', 'cp', 'porn', 'child porn', 'sex', 'nsfw', 'gore', '18+', 'csgo',]
+const badServerNames = ['advertising', 'ads', 'crypto', 'bitcoin', 'dogecoin', 'litecoin', 'eth', 'ether', 'ethereum', 'loli', 'cp', 'porn', 'child porn', 'sex', 'nsfw', 'gore', '18+', 'nigger' ,'nigga']
 
 const client = new Client({
     intents: 30223,
