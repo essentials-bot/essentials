@@ -11,7 +11,7 @@ module.exports = {
 
     async execute(interaction) {
 	const echo = interaction.options.getString('input');
-
-    await interaction.reply(echo);
+   
+	await interaction.reply(echo);
     },
 }
