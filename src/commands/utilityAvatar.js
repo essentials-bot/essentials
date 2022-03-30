@@ -21,8 +21,6 @@ module.exports = {
     .setTimestamp()
     .setImage(User.displayAvatarURL() + "?size=2048");
 
-    console.log(User.displayAvatarURL())
-
     await interaction.reply({ embeds: [userembed] });
     },
 }
